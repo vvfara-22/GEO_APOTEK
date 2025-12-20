@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoApotek - Pemetaan Celah Pasar Apotek Kota Makassar</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="shortcut icon" href="img/logo.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin=""/>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+          crossorigin="anonymous" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <img src="img/logo.png" alt="GeoApotek Logo" class="brand-logo">
+                <span class="brand-text">GeoApotek</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link active">Beranda</a></li>
+                <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="#map-section" class="nav-link">Peta Analisis</a></li>
+                <li><a href="#methodology" class="nav-link">Metodologi</a></li>
+                <li><a href="#recommendations" class="nav-link">Rekomendasi</a></li>
+                <li><a href="#info" class="nav-link">Informasi</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION - NO BADGE, JUDUL GRADASI -->
+    <section id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-background"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">
+                <br>
+                <span class="gradient-text">GeoApotek</span>
+            </h1>
+            <p class="hero-description">
+                Sistem informasi geografis berbasis web untuk menganalisis persebaran apotek, 
+                mengidentifikasi celah pasar, dan memberikan rekomendasi lokasi strategis 
+                berdasarkan standar rasio 1:8.333 penduduk di Kota Makassar.
+            </p>
+            <div class="hero-buttons">
+                <a href="#map-section" class="btn btn-primary smooth-scroll">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Lihat Peta
+                </a>
+                <a href="#methodology" class="btn btn-secondary smooth-scroll">
+                    <i class="fas fa-book"></i>
+                    Metodologi
+                </a>
+            </div>
+            
+            <!-- 3 STATS HORIZONTAL -->
+            <div class="hero-stats">
+                <div class="hero-stat-item">
+                    <div class="stat-icon"><i class="fas fa-database"></i></div>
+                    <div class="stat-info">
+                        <h3 id="hero-districts">143</h3>
+                        <p>Kelurahan</p>
+                    </div>
+                </div>
+                <div class="hero-stat-item">
+                    <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="stat-info">
+                        <h3>7 Layer</h3>
+                        <p>Data Geospasial</p>
+                    </div>
+                </div>
+                <div class="hero-stat-item">
+                    <div class="stat-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="stat-info">
+                        <h3>Presisi</h3>
+                        <p>Rekomendasi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll-indicator smooth-scroll" data-target="#dashboard">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- DASHBOARD SECTION -->
+    <section id="dashboard" class="dashboard-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Data Agregat Real-Time</span>
+                </div>
+                <h2 class="section-title">Dashboard Statistik Kota Makassar</h2>
+                <p class="section-description">
+                    Agregasi data hasil analisis spasial untuk seluruh wilayah Kota Makassar
+                </p>
+            </div>
+            
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card loading">
+                    <div class="stat-icon-wrapper primary">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="totalPopulation">
+                            <div class="skeleton-text"></div>
+                        </h3>
+                        <p class="stat-label">Total Penduduk</p>
+                        <span class="stat-trend">
+                            <i class="fas fa-info-circle"></i>
+                            BPS Kota Makassar 2025
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="stat-card loading">
+                    <div class="stat-icon-wrapper success">
+                        <i class="fas fa-briefcase-medical"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="totalApotek">
+                            <div class="skeleton-text"></div>
+                        </h3>
+                        <p class="stat-label">Total Apotek</p>
+                        <span class="stat-trend">
+                            <i class="fas fa-info-circle"></i>
+                            Apotek Terdaftar
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="stat-card loading">
+                    <div class="stat-icon-wrapper danger">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="totalRS">
+                            <div class="skeleton-text"></div>
+                        </h3>
+                        <p class="stat-label">Rumah Sakit</p>
+                        <span class="stat-trend">
+                            <i class="fas fa-info-circle"></i>
+                            Fasilitas Kesehatan
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="stat-card loading">
+                    <div class="stat-icon-wrapper accent">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-value" id="potentialAreas">
+                            <div class="skeleton-text"></div>
+                        </h3>
+                        <p class="stat-label">Area Defisit</p>
+                        <span class="stat-trend positive">
+                            <i class="fas fa-arrow-up"></i>
+                            Kekurangan Apotek
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section id="map-section" class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-globe-asia"></i>
+                    <span>WebGIS Interaktif</span>
+                </div>
+                <h2 class="section-title">Peta Analisis Interaktif</h2>
+                <p class="section-description">
+                    Visualisasi spasial persebaran apotek, kepadatan penduduk, dan celah pasar
+                </p>
+            </div>
+            
+            <div class="map-container-wrapper">
+                <div id="map" class="map-container"></div>
+                <div class="map-loading" id="mapLoading">
+                    <div class="loader"></div>
+                    <p>Memuat Data Geospasial...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METHODOLOGY SECTION -->
+    <section id="methodology" class="methodology-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-flask"></i>
+                    <span>Kerangka Penelitian</span>
+                </div>
+                <h2 class="section-title">Metodologi Analisis Spasial</h2>
+                <p class="section-description">
+                    Tahapan analisis menggunakan model ADDIE dengan pendekatan R&D
+                </p>
+            </div>
+            
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <div class="method-number">01</div>
+                    <div class="method-icon"><i class="fas fa-map"></i></div>
+                    <h3>Choropleth Mapping</h3>
+                    <p>Pemetaan kepadatan penduduk per kelurahan menggunakan gradasi warna untuk mengidentifikasi wilayah dengan potensi permintaan tinggi berdasarkan data BPS 2025.</p>
+                    <div class="method-tech">
+                        <i class="fas fa-tools"></i>
+                        <span>QGIS · Natural Breaks</span>
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">02</div>
+                    <div class="method-icon"><i class="fas fa-route"></i></div>
+                    <h3>Analisis Jaringan</h3>
+                    <p>Menghitung area jangkauan layanan apotek dan rumah sakit berdasarkan jaringan jalan dengan radius maksimal 2 kilometer dan 5 kilometer menggunakan QNEAT3.</p>
+                    <div class="method-tech">
+                        <i class="fas fa-tools"></i>
+                        <span>QNEAT3 · Service Area · OSM</span>
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">03</div>
+                    <div class="method-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Overlay Analysis</h3>
+                    <p>Mengintegrasikan data permintaan dan pasokan dengan operasi "Difference" untuk mengidentifikasi wilayah yang tidak terjangkau layanan apotek (celah pasar).</p>
+                    <div class="method-tech">
+                        <i class="fas fa-tools"></i>
+                        <span>Vector Overlay · QGIS</span>
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">04</div>
+                    <div class="method-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Perhitungan Rasio Ideal</h3>
+                    <p>Menerapkan standar Permenkes RI No. 73 Tahun 2016 dengan rasio 1 apotek per 8.333 penduduk. Menghitung kebutuhan ideal dan defisit apotek.</p>
+                    <div class="method-tech">
+                        <i class="fas fa-tools"></i>
+                        <span>Field Calculator · Permenkes</span>
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">05</div>
+                    <div class="method-icon"><i class="fas fa-circle-notch"></i></div>
+                    <h3>Buffer Analysis</h3>
+                    <p>Membuat zona jangkauan pelayanan apotek dan rumah sakit untuk menganalisis aksesibilitas geografis masyarakat terhadap layanan farmasi.</p>
+                    <div class="method-tech">
+                        <i class="fas fa-tools"></i>
+                        <span>Buffer Tool · Proximity</span>
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-number">06</div>
+                    <div class="method-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Analytical Hierarchy Process</h3>
+                    <p>Validasi dan prioritisasi rekomendasi lokasi melalui wawancara dengan 3-5 ahli. Menghasilkan peringkat lokasi strategis berdasarkan multi-kriteria.</p>
+                    <div class="method-tech">
+                        <i class="fas fa-tools"></i>
+                        <span>Expert Judgment · AHP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECOMMENDATIONS SECTION -->
+    <section id="recommendations" class="recommendations-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-trophy"></i>
+                    <span>Rekomendasi Strategis</span>
+                </div>
+                <h2 class="section-title">10 Lokasi Rekomendasi Strategis</h2>
+                <p class="section-description">
+                    <strong>Indikator Rekomendasi Multi-Criteria:</strong>
+                    <br><strong>1. Defisit Apotek (Bobot 70%)</strong> - Kekurangan apotek berdasarkan standar 1:8.333 penduduk (Permenkes RI No. 73/2016)
+                    <br><strong>2. Kepadatan Penduduk (Bobot 20%)</strong> - Wilayah berpenduduk padat mendapat prioritas lebih tinggi
+                    <br><strong>3. Status Tanpa Apotek (Bobot 10%)</strong> - Bonus untuk wilayah yang sama sekali belum memiliki apotek
+                    <br><em style="color: var(--accent);">💡 Sistem ini memastikan keseimbangan antara wilayah defisit tinggi dan wilayah tanpa akses apotek sama sekali.</em>
+                </p>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-wrapper">
+                    <table class="recommendations-table" id="recommendationsTable">
+                        <thead>
+                            <tr>
+                                <th><div class="th-content"><i class="fas fa-medal"></i> Rank</div></th>
+                                <th><div class="th-content"><i class="fas fa-map-pin"></i> Kelurahan</div></th>
+                                <th><div class="th-content"><i class="fas fa-users"></i> Penduduk</div></th>
+                                <th><div class="th-content"><i class="fas fa-store"></i> Apotek Ada</div></th>
+                                <th><div class="th-content"><i class="fas fa-chart-line"></i> Defisit</div></th>
+                                <th><div class="th-content"><i class="fas fa-flag"></i> Status Pasar</div></th>
+                            </tr>
+                        </thead>
+                        <tbody id="recommendationsBody">
+                            <tr class="loading-row">
+                                <td colspan="6">
+                                    <div class="table-loader">
+                                        <div class="loader"></div>
+                                        <p>Memproses data...</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-info">
+                    <i class="fas fa-hand-pointer"></i>
+                    <span>Klik baris untuk melihat lokasi di peta</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO SECTION -->
+    <section id="info" class="info-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Informasi Penelitian</span>
+                </div>
+                <h2 class="section-title">Informasi & Kontak</h2>
+                <p class="section-description">
+                    Detail lengkap penelitian, pengembang sistem, dan teknologi yang digunakan
+                </p>
+            </div>
+
+            <div class="info-grid">
+                <!-- PENGEMBANG SISTEM -->
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Pengembang Sistem</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="developer-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h4>Siti Faradiba Anwar</h4>
+                        <p class="developer-nim">NIM: 220907501020</p>
+                        <p class="developer-affiliation">Program Studi Bisnis Digital<br>Fakultas Ekonomi dan Bisnis<br>Universitas Negeri Makassar</p>
+                        
+                        <div class="contact-links">
+                            <a href="mailto:sitifaradiba6@gmail.com" class="contact-btn">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/siti-faradiba-anwar" target="_blank" class="contact-btn">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/vvfara-22/geoapotek" target="_blank" class="contact-btn">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TEKNOLOGI -->
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Teknologi yang Digunakan</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="tech-stack">
+                            <div class="tech-item">
+                                <i class="fas fa-map"></i>
+                                <div><h5>QGIS Desktop</h5><p>Analisis Spasial</p></div>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fab fa-python"></i>
+                                <div><h5>Python</h5><p>Web Scraping</p></div>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-leaf"></i>
+                                <div><h5>Leaflet.js</h5><p>Interactive Mapping</p></div>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fab fa-js"></i>
+                                <div><h5>JavaScript</h5><p>Frontend Development</p></div>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-database"></i>
+                                <div><h5>GeoJSON</h5><p>Spatial Data Format</p></div>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fab fa-html5"></i>
+                                <div><h5>HTML5 & CSS3</h5><p>Web Structure</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INFORMASI PENELITIAN -->
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="fas fa-book"></i>
+                        <h3>Informasi Penelitian</h3>
+                    </div>
+                    <div class="info-card-body">
+                        <div class="research-info">
+                            <div class="research-item">
+                                <i class="fas fa-heading"></i>
+                                <div>
+                                    <h5>Judul</h5>
+                                    <p>Rancang Bangun WebGIS GeoApotek untuk Pemetaan Celah Pasar dan Penentuan Lokasi Strategis Jaringan Apotek di Kota Makassar</p>
+                                </div>
+                            </div>
+                            <div class="research-item">
+                                <i class="fas fa-flask"></i>
+                                <div>
+                                    <h5>Metodologi</h5>
+                                    <p>Research and Development (R&D) dengan Model ADDIE</p>
+                                </div>
+                            </div>
+                            <div class="research-item">
+                                <i class="fas fa-database"></i>
+                                <div>
+                                    <h5>Data Source</h5>
+                                    <p>BPS Kota Makassar, OpenStreetMap (OSM), Google Maps, Dinas Kesehatan</p>
+                                </div>
+                            </div>
+                            <div class="research-item">
+                                <i class="fas fa-map-marked-alt"></i>
+                                <div>
+                                    <h5>Coverage Area</h5>
+                                    <p>Seluruh wilayah Kota Makassar (143 Kelurahan, 15 Kecamatan)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="img/logo.png" alt="GeoApotek">
+                        <span>GeoApotek</span>
+                    </div>
+                    <p>Sistem analisis geospasial bisnis apotek di Kota Makassar</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navigasi</h4>
+                        <ul>
+                            <li><a href="#hero">Beranda</a></li>
+                            <li><a href="#dashboard">Dashboard</a></li>
+                            <li><a href="#map-section">Peta</a></li>
+                            <li><a href="#recommendations">Rekomendasi</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Metodologi</h4>
+                        <ul>
+                            <li><a href="#methodology">Analisis Spasial</a></li>
+                            <li><a href="#info">Sumber Data</a></li>
+                            <li><a href="#info">Teknologi</a></li>
+                            <li><a href="#info">Kontak</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 GeoApotek by Siti Faradiba Anwar - Universitas Negeri Makassar</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+            crossorigin=""></script>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
