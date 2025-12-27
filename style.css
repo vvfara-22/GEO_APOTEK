@@ -2235,3 +2235,98 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 12px;
     }
 }
+
+/* ========================================
+   TOGGLE BUTTON FOR LEGEND & CONTROLS (MOBILE)
+   ======================================== */
+
+/* Toggle button - only visible on mobile */
+.map-toggle-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: white;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.map-toggle-button:active {
+    transform: scale(0.95);
+}
+
+.map-toggle-button i {
+    font-size: 20px;
+    color: var(--accent);
+    transition: transform 0.3s ease;
+}
+
+.map-toggle-button.active i {
+    transform: rotate(180deg);
+}
+
+/* Hide legend and layer control by default on mobile */
+@media (max-width: 768px) {
+    .map-toggle-button {
+        display: flex; /* Show toggle button on mobile */
+    }
+    
+    /* Hide controls by default */
+    .leaflet-control-layers,
+    .legend-control {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(20px);
+        transition: all 0.3s ease;
+    }
+    
+    /* Show controls when toggled */
+    .map-controls-visible .leaflet-control-layers,
+    .map-controls-visible .legend-control {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0);
+    }
+    
+    /* Backdrop when controls visible */
+    .map-container-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 999;
+    }
+    
+    .map-container-wrapper.map-controls-visible::before {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+/* Extra small devices - smaller button */
+@media (max-width: 480px) {
+    .map-toggle-button {
+        width: 44px;
+        height: 44px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .map-toggle-button i {
+        font-size: 18px;
+    }
+}

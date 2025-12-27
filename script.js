@@ -12,7 +12,7 @@ const DATA_PATHS = {
     celahPasar: './data/celah_pasar.geojson',
     jangkauanApotek: './data/jangkauan_apotek.geojson',
     jangkauanRS: './data/jangkauan_rs.geojson',
-    titikApotek: './data/titik_ap.geojson',
+    titikApotek: './data/titik_apotek.geojson',
     titikRS: './data/titik_rs.geojson',
     jaringanJalan: './data/jaringan_jalan.geojson'
 };
@@ -796,3 +796,81 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+/* ========================================
+   MAP TOGGLE BUTTON FOR MOBILE
+   ======================================== */
+function initMapToggleButton() {
+    // Only run on mobile
+    if (window.innerWidth > 768) return;
+    
+    const mapWrapper = document.querySelector('.map-container-wrapper');
+    if (!mapWrapper) return;
+    
+    // Check if button already exists
+    if (document.querySelector('.map-toggle-button')) return;
+    
+    // Create toggle button
+    const toggleButton = document.createElement('button');
+    toggleButton.className = 'map-toggle-button';
+    toggleButton.setAttribute('aria-label', 'Toggle map controls');
+    toggleButton.innerHTML = '<i class="fas fa-layer-group"></i>';
+    
+    // Insert button
+    mapWrapper.insertBefore(toggleButton, mapWrapper.firstChild);
+    
+    // Toggle state
+    let isVisible = false;
+    
+    // Toggle on button click
+    toggleButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        isVisible = !isVisible;
+        
+        if (isVisible) {
+            mapWrapper.classList.add('map-controls-visible');
+            toggleButton.classList.add('active');
+        } else {
+            mapWrapper.classList.remove('map-controls-visible');
+            toggleButton.classList.remove('active');
+        }
+    });
+    
+    // Close when clicking backdrop
+    mapWrapper.addEventListener('click', function(e) {
+        if (isVisible && e.target === mapWrapper) {
+            isVisible = false;
+            mapWrapper.classList.remove('map-controls-visible');
+            toggleButton.classList.remove('active');
+        }
+    });
+    
+    console.log('✅ Map toggle button initialized');
+}
+
+// Initialize after map loads
+if (typeof map !== 'undefined' && map) {
+    map.whenReady(function() {
+        setTimeout(initMapToggleButton, 500);
+    });
+} else {
+    // Fallback: wait for window load
+    window.addEventListener('load', function() {
+        setTimeout(initMapToggleButton, 1000);
+    });
+}
+
+// Handle resize/orientation change
+let resizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        const existingButton = document.querySelector('.map-toggle-button');
+        if (window.innerWidth <= 768 && !existingButton) {
+            initMapToggleButton();
+        } else if (window.innerWidth > 768 && existingButton) {
+            existingButton.remove();
+            document.querySelector('.map-container-wrapper')?.classList.remove('map-controls-visible');
+        }
+    }, 250);
+});
