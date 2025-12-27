@@ -12,7 +12,7 @@ const DATA_PATHS = {
     celahPasar: './data/celah_pasar.geojson',
     jangkauanApotek: './data/jangkauan_apotek.geojson',
     jangkauanRS: './data/jangkauan_rs.geojson',
-    titikApotek: './data/titik_apotek.geojson',
+    titikApotek: './data/titik_ap.geojson',
     titikRS: './data/titik_rs.geojson',
     jaringanJalan: './data/jaringan_jalan.geojson'
 };
