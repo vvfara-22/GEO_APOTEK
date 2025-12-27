@@ -479,22 +479,28 @@ h1, h2, h3, h4, h5, h6 {
    ======================================== */
    
 /* Layer control panel */
+/* Layer control panel */
 .leaflet-control-layers {
     border-radius: 12px !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
     border: 2px solid rgba(1, 184, 170, 0.2) !important;
+    /* Menambahkan z-index untuk memastikan panel selalu di atas */
+    z-index: 1002 !important;
 }
 
 .leaflet-control-layers-expanded {
     padding: 12px !important;
     background: rgba(255, 255, 255, 0.98) !important;
     backdrop-filter: blur(10px);
-    max-height: 400px;
+    /* Mengurangi max-height untuk mobile */
+    max-height: 300px !important; /* Lebih kecil dari 400px */
     overflow-y: auto;
+    /* Menambahkan margin-top untuk menghindari tumpang tindih dengan tombol toggle */
+    margin-top: 60px !important; /* Sudah ada, tapi saya pastikan nilainya tepat */
 }
 
 .leaflet-control-layers-list {
-    max-height: 350px;
+    max-height: 250px !important; /* Lebih kecil dari 350px */
     overflow-y: auto;
 }
 
@@ -522,6 +528,8 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
     border: 2px solid rgba(1, 184, 170, 0.2) !important;
     max-width: 220px;
+    /* Menambahkan z-index untuk memastikan legenda selalu di atas */
+    z-index: 1001 !important;
 }
 
 .legend-control h4 {
@@ -573,163 +581,114 @@ h1, h2, h3, h4, h5, h6 {
     color: white !important;
 }
 
-.map-loading {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.98);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    z-index: 10;
-    transition: opacity var(--transition-medium);
+/* ========================================
+MOBILE SPECIFIC ADJUSTMENTS - PERBAIKAN UNTUK MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+    /* ... kode media query lainnya tetap sama ... */
+
+    /* Mobile map controls adjustments */
+    .leaflet-control-layers-expanded {
+        max-width: 280px !important;
+        max-height: 320px !important;
+        font-size: 12px !important;
+        /* Memastikan panel tidak tumpang tindih dengan tombol toggle */
+        margin-top: 80px !important; /* Dinaikkan dari 60px untuk memberi ruang lebih */
+    }
+
+    .leaflet-control-layers label {
+        font-size: 12px !important;
+        padding: 6px 2px !important;
+    }
+
+    .legend-control {
+        max-width: 180px !important;
+        padding: 12px !important;
+        font-size: 11px !important;
+        /* Mengurangi margin-top jika diperlukan untuk penempatan yang lebih baik */
+        margin-top: 20px !important; /* Ini opsional, bisa dihapus jika tidak diperlukan */
+    }
+
+    .legend-control h4 {
+        font-size: 12px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .legend-item {
+        margin: 6px 0 !important;
+        font-size: 10px !important;
+    }
+
+    .legend-color {
+        width: 20px !important;
+        height: 14px !important;
+    }
+
+    .leaflet-control-zoom a {
+        width: 36px !important;
+        height: 36px !important;
+        line-height: 36px !important;
+        font-size: 18px !important;
+    }
+
+    /* Perbaikan tambahan: Pastikan layer control tidak tertutup oleh elemen lain */
+    .leaflet-control-layers {
+        z-index: 1003 !important; /* Nilai z-index lebih tinggi lagi untuk mobile */
+    }
+
+    /* Perbaikan untuk legenda di mobile */
+    .legend-control {
+        z-index: 1002 !important; /* Nilai z-index lebih tinggi lagi untuk mobile */
+    }
+
+    /* Pastikan tombol toggle tidak tumpang tindih dengan layer control */
+    .map-toggle-button {
+        top: 100px; /* Dinaikkan sedikit lebih tinggi untuk memberi ruang */
+        right: 20px;
+        z-index: 1004; /* Z-index tertinggi untuk tombol toggle */
+    }
+
+    /* Jika masih ada masalah, kita bisa coba atur ulang posisi layer control saat aktif */
+    .map-controls-visible .leaflet-control-layers {
+        top: 80px !important; /* Atur posisi absolut jika perlu */
+        left: auto !important;
+        right: 20px !important;
+    }
 }
 
-.map-loading.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
+@media (max-width: 480px) {
+    /* ... kode media query lainnya tetap sama ... */
 
-.map-loading p {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--primary);
-}
+    /* Even smaller controls for tiny screens */
+    .leaflet-control-layers-expanded {
+        max-width: 240px !important;
+        max-height: 280px !important;
+        /* Menggunakan margin-top yang lebih besar untuk layar sangat kecil */
+        margin-top: 90px !important;
+    }
 
-.loader {
-    width: 44px;
-    height: 44px;
-    border: 4px solid rgba(11, 79, 108, 0.1);
-    border-top-color: var(--primary);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
+    .legend-control {
+        max-width: 160px !important;
+        padding: 10px !important;
+        /* Mengurangi margin-top jika diperlukan */
+        margin-top: 10px !important;
+    }
 
-/* Leaflet Popup */
-.leaflet-popup-content-wrapper {
-    background: var(--white);
-    backdrop-filter: blur(20px);
-    border-radius: 12px;
-    box-shadow: var(--shadow-lg);
-    padding: 0;
-    overflow: hidden;
-}
+    .legend-control h4 {
+        font-size: 11px !important;
+    }
 
-.leaflet-popup-content {
-    margin: 0;
-    min-width: 280px;
-}
+    .legend-item {
+        font-size: 9px !important;
+    }
 
-.popup-header {
-    padding: 16px 18px;
-    color: var(--white);
-    font-weight: 700;
-    font-size: 15px;
-}
-
-.popup-header.potential {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-}
-
-.popup-header.saturated {
-    background: linear-gradient(135deg, var(--danger) 0%, #c0392b 100%);
-}
-
-.popup-body {
-    padding: 16px 18px;
-}
-
-.popup-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.popup-row:last-child {
-    border-bottom: none;
-}
-
-.popup-label {
-    font-size: 13px;
-    color: var(--text-medium);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.popup-value {
-    font-size: 15px;
-    font-weight: 700;
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-dark);
-}
-
-.popup-value.positive {
-    color: #10b981;
-}
-
-.popup-value.negative {
-    color: var(--danger);
-}
-
-.popup-status {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    text-align: center;
-}
-
-.popup-status-text {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 16px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.popup-status-text.potential {
-    background: rgba(16, 185, 129, 0.15);
-    color: #059669;
-}
-
-.popup-status-text.saturated {
-    background: rgba(231, 76, 60, 0.15);
-    color: #c0392b;
-}
-
-/* Legend */
-.legend {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    padding: 14px;
-    border-radius: 10px;
-    box-shadow: var(--shadow-md);
-    line-height: 1.6;
-    font-size: 12px;
-}
-
-.legend h4 {
-    margin-bottom: 10px;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--primary);
-}
-
-.legend i {
-    width: 18px;
-    height: 18px;
-    display: inline-block;
-    margin-right: 6px;
-    border-radius: 3px;
-    vertical-align: middle;
+    /* Untuk layar sangat kecil, pastikan tombol toggle tidak terlalu dekat dengan layer control */
+    .map-toggle-button {
+        top: 110px; /* Dinaikkan lebih tinggi lagi */
+        right: 15px;
+        z-index: 1005; /* Z-index tertinggi */
+    }
 }
 
 /* ========================================
