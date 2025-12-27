@@ -1,6 +1,6 @@
 {
 "type": "FeatureCollection",
-"name": "titik_apotek",
+"name": "titik_ap",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "NAMA": "Apotek Athirah Medika", "LONGITUDE": 119.5270925761403, "LATITUDE": -5.090238864891532 }, "geometry": { "type": "Point", "coordinates": [ 119.527092576140305, -5.090238864891529 ] } },
@@ -390,6 +390,21 @@
 { "type": "Feature", "properties": { "NAMA": "Apotek Sehat Sentosa Farma", "LONGITUDE": 119.42124950536584, "LATITUDE": -5.1117951234213743 }, "geometry": { "type": "Point", "coordinates": [ 119.42124950536585, -5.11179512342137 ] } },
 { "type": "Feature", "properties": { "NAMA": "APOTEK ASA", "LONGITUDE": 119.42337155574171, "LATITUDE": -5.1124931647689644 }, "geometry": { "type": "Point", "coordinates": [ 119.423371555741696, -5.112493164768968 ] } },
 { "type": "Feature", "properties": { "NAMA": "Toko Obat As-syams", "LONGITUDE": 119.4281715568151, "LATITUDE": -5.1109062690662963 }, "geometry": { "type": "Point", "coordinates": [ 119.428171556815101, -5.110906269066293 ] } },
-{ "type": "Feature", "properties": { "NAMA": "Ratu Bilqis Apotik Shop", "LONGITUDE": 119.42722618949416, "LATITUDE": -5.1105349242214064 }, "geometry": { "type": "Point", "coordinates": [ 119.427226189494164, -5.110534924221398 ] } }
+{ "type": "Feature", "properties": { "NAMA": "Ratu Bilqis Apotik Shop", "LONGITUDE": 119.42722618949416, "LATITUDE": -5.1105349242214064 }, "geometry": { "type": "Point", "coordinates": [ 119.427226189494164, -5.110534924221398 ] } },
+{ "type": "Feature", "properties": { "NAMA": "APOTEK TONASA", "LONGITUDE": 119.42950978971037, "LATITUDE": -5.135513395696286 }, "geometry": { "type": "Point", "coordinates": [ 119.42947887830266, -5.135469140667209 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek Cahaya Ibu", "LONGITUDE": 119.42994028321189, "LATITUDE": -5.1365392285862521 }, "geometry": { "type": "Point", "coordinates": [ 119.429969982193427, -5.136727843208764 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek intan jaya farma", "LONGITUDE": 119.43197092799284, "LATITUDE": -5.1380355368858384 }, "geometry": { "type": "Point", "coordinates": [ 119.431922987033786, -5.138055305897385 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek Filantropis", "LONGITUDE": 119.43325562989489, "LATITUDE": -5.1379964962064912 }, "geometry": { "type": "Point", "coordinates": [ 119.433249349315915, -5.138014660558193 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek MM", "LONGITUDE": 119.43368173095938, "LATITUDE": -5.1379544211543697 }, "geometry": { "type": "Point", "coordinates": [ 119.433679456305271, -5.137952968304599 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek NM Farma", "LONGITUDE": 119.43373537513797, "LATITUDE": -5.1379490782908599 }, "geometry": { "type": "Point", "coordinates": [ 119.433817019763922, -5.137961339752634 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek SS-75 Farma Maccini", "LONGITUDE": 119.43763738963018, "LATITUDE": -5.1379317087567236 }, "geometry": { "type": "Point", "coordinates": [ 119.437377326759432, -5.137965534811105 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek Ablam Medika", "LONGITUDE": 119.43548165769931, "LATITUDE": -5.1415638435294824 }, "geometry": { "type": "Point", "coordinates": [ 119.435765161599377, -5.141599212874024 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek Risda Farma", "LONGITUDE": 119.43782358046894, "LATITUDE": -5.1417030967898656 }, "geometry": { "type": "Point", "coordinates": [ 119.437866653185125, -5.141809139183931 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek Plus Khenandra", "LONGITUDE": 119.44000490951828, "LATITUDE": -5.1436917856436839 }, "geometry": { "type": "Point", "coordinates": [ 119.439983590867115, -5.143744900172902 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek Singara' Farma", "LONGITUDE": 119.44319351568565, "LATITUDE": -5.1440212103831016 }, "geometry": { "type": "Point", "coordinates": [ 119.443253468942856, -5.144078213442599 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek Persada", "LONGITUDE": 119.42966183123777, "LATITUDE": -5.1345646930922326 }, "geometry": { "type": "Point", "coordinates": [ 119.429641130698741, -5.134637751521841 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek Kimia Farma Urip", "LONGITUDE": 119.43614635590114, "LATITUDE": -5.1352729658428622 }, "geometry": { "type": "Point", "coordinates": [ 119.43608588905262, -5.135422755467759 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek Inomar Unhas", "LONGITUDE": 119.42983300440889, "LATITUDE": -5.121888515503791 }, "geometry": { "type": "Point", "coordinates": [ 119.429892136927393, -5.122024569039975 ] } },
+{ "type": "Feature", "properties": { "NAMA": "Apotek K-24 AR Hakim Makassar", "LONGITUDE": 119.43424672057243, "LATITUDE": 5.1240347088321148 }, "geometry": { "type": "Point", "coordinates": [ 119.434297536581909, -5.123991725715697 ] } }
 ]
 }

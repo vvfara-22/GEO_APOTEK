@@ -9,7 +9,6 @@
 { "type": "Feature", "properties": { "NAMA_RUMAH": "Rumah Sakit Umum Daerah Daya Kota Makassar", "LONGITUDE": 119.51099759675655, "LATITUDE": -5.1121608038666144 }, "geometry": { "type": "Point", "coordinates": [ 119.510997596756553, -5.112160803866611 ] } },
 { "type": "Feature", "properties": { "NAMA_RUMAH": "Rumah Sakit Umum Pusat Dr. Wahidin Sudirohusodo", "LONGITUDE": 119.49404433355485, "LATITUDE": -5.1346865838273299 }, "geometry": { "type": "Point", "coordinates": [ 119.494044333554854, -5.134686583827322 ] } },
 { "type": "Feature", "properties": { "NAMA_RUMAH": "Rumah Sakit Universitas Hasanuddin", "LONGITUDE": 119.49445612728069, "LATITUDE": -5.1330810430821341 }, "geometry": { "type": "Point", "coordinates": [ 119.494456127280699, -5.133081043082136 ] } },
-{ "type": "Feature", "properties": { "NAMA_RUMAH": "Klinik VCT", "LONGITUDE": 119.43698407469506, "LATITUDE": -5.1178255329815023 }, "geometry": { "type": "Point", "coordinates": [ 119.436984074695062, -5.117825532981493 ] } },
 { "type": "Feature", "properties": { "NAMA_RUMAH": "Rumah Sakit 45 Makassar", "LONGITUDE": 119.45213558144809, "LATITUDE": -5.1397796743131421 }, "geometry": { "type": "Point", "coordinates": [ 119.45213558144809, -5.13977967431314 ] } },
 { "type": "Feature", "properties": { "NAMA_RUMAH": "Rumah Sakit Ibnu Sina YW - Umi", "LONGITUDE": 119.44647075602191, "LATITUDE": -5.1386683609230976 }, "geometry": { "type": "Point", "coordinates": [ 119.44647075602191, -5.138668360923092 ] } },
 { "type": "Feature", "properties": { "NAMA_RUMAH": "RS. Grestelina", "LONGITUDE": 119.44470584388587, "LATITUDE": -5.1617277164144397 }, "geometry": { "type": "Point", "coordinates": [ 119.44470584388587, -5.161727716414441 ] } },
@@ -34,6 +33,7 @@
 { "type": "Feature", "properties": { "NAMA_RUMAH": "Seruni Kls 2 Rs Akademis", "LONGITUDE": 119.41767906638233, "LATITUDE": -5.1314581337990663 }, "geometry": { "type": "Point", "coordinates": [ 119.417679066382334, -5.131458133799063 ] } },
 { "type": "Feature", "properties": { "NAMA_RUMAH": "Rumah Sakit Akademis Jaury Jusuf Putra", "LONGITUDE": 119.41483752849101, "LATITUDE": -5.1311400193267582 }, "geometry": { "type": "Point", "coordinates": [ 119.414837528491006, -5.131140019326761 ] } },
 { "type": "Feature", "properties": { "NAMA_RUMAH": "RS PIP Makassar", "LONGITUDE": 119.41726282237939, "LATITUDE": -5.1209057835043961 }, "geometry": { "type": "Point", "coordinates": [ 119.417262822379399, -5.120905783504399 ] } },
-{ "type": "Feature", "properties": { "NAMA_RUMAH": "Rumah Sakit Angkatan Laut JALA AMMARI", "LONGITUDE": 119.41561997909793, "LATITUDE": -5.1154934525744364 }, "geometry": { "type": "Point", "coordinates": [ 119.41561997909794, -5.115493452574438 ] } }
+{ "type": "Feature", "properties": { "NAMA_RUMAH": "Rumah Sakit Angkatan Laut JALA AMMARI", "LONGITUDE": 119.41561997909793, "LATITUDE": -5.1154934525744364 }, "geometry": { "type": "Point", "coordinates": [ 119.41561997909794, -5.115493452574438 ] } },
+{ "type": "Feature", "properties": { "NAMA_RUMAH": "Primaya Hospital Makassar", "LONGITUDE": 119.43531487111133, "LATITUDE": -5.1350913076923721 }, "geometry": { "type": "Point", "coordinates": [ 119.435043312374916, -5.135032326819512 ] } }
 ]
 }
