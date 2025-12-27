@@ -1524,6 +1524,7 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 280px !important;
         max-height: 320px !important;
         font-size: 12px !important;
+        margin-top: 60px !important; /* Push down to avoid toggle button */
     }
     
     .leaflet-control-layers label {
@@ -2243,9 +2244,9 @@ h1, h2, h3, h4, h5, h6 {
 /* Toggle button - only visible on mobile */
 .map-toggle-button {
     position: absolute;
-    top: 20px;
+    top: 80px; /* Moved down to avoid overlap with layer control */
     right: 20px;
-    z-index: 1000;
+    z-index: 1001; /* Higher than layer control */
     background: white;
     border: 2px solid var(--accent);
     border-radius: 50%;
@@ -2277,6 +2278,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .map-toggle-button {
         display: flex; /* Show toggle button on mobile */
+        top: 90px; /* Even lower on mobile to ensure no overlap */
     }
     
     /* Hide controls by default */
@@ -2317,12 +2319,12 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Extra small devices - smaller button */
+/* Extra small devices - smaller button, even lower position */
 @media (max-width: 480px) {
     .map-toggle-button {
         width: 44px;
         height: 44px;
-        top: 15px;
+        top: 85px; /* Adjusted for small screens */
         right: 15px;
     }
     
