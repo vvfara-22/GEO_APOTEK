@@ -2321,6 +2321,54 @@ h1, h2, h3, h4, h5, h6 {
         line-height: 32px !important;
         font-size: 16px !important;
     }
+    
+    /* ========================================
+       POPUP - KECIL DAN COMPACT DI MOBILE
+       ======================================== */
+    
+    .leaflet-popup-content-wrapper {
+        max-width: 240px !important;
+    }
+    
+    .leaflet-popup-content {
+        min-width: 200px !important;
+    }
+    
+    .popup-header {
+        padding: 10px 12px !important;
+        font-size: 12px !important;
+    }
+    
+    .popup-body {
+        padding: 8px 12px !important;
+    }
+    
+    .popup-row {
+        padding: 5px 0 !important;
+    }
+    
+    .popup-label {
+        font-size: 10px !important;
+    }
+    
+    .popup-label i {
+        font-size: 9px !important;
+    }
+    
+    .popup-value {
+        font-size: 12px !important;
+    }
+    
+    .popup-status {
+        margin-top: 6px !important;
+        padding-top: 6px !important;
+    }
+    
+    .popup-status-text {
+        padding: 4px 8px !important;
+        font-size: 9px !important;
+        letter-spacing: 0.3px !important;
+    }
 }
 
 /* Extra small devices - LEBIH KECIL LAGI */
@@ -2371,5 +2419,40 @@ h1, h2, h3, h4, h5, h6 {
         height: 28px !important;
         line-height: 28px !important;
         font-size: 14px !important;
+    }
+    
+    /* POPUP - LEBIH KECIL LAGI */
+    .leaflet-popup-content-wrapper {
+        max-width: 220px !important;
+    }
+    
+    .leaflet-popup-content {
+        min-width: 180px !important;
+    }
+    
+    .popup-header {
+        padding: 8px 10px !important;
+        font-size: 11px !important;
+    }
+    
+    .popup-body {
+        padding: 6px 10px !important;
+    }
+    
+    .popup-row {
+        padding: 4px 0 !important;
+    }
+    
+    .popup-label {
+        font-size: 9px !important;
+    }
+    
+    .popup-value {
+        font-size: 11px !important;
+    }
+    
+    .popup-status-text {
+        padding: 3px 6px !important;
+        font-size: 8px !important;
     }
 }
